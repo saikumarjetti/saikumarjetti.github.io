@@ -1,0 +1,45 @@
+<!DOCTYPR html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+    <title>HTML5 Form</title>
+</head>
+<body>
+   <h1>Feedback Form</h1>
+    <p>With this form, you can report issues on my web page, and you can provide feedback on my web page.</p>
+    
+    <form  method="get">
+        First Name:
+        <input type="text" name="first_mame"  required>
+        <br><br>
+        Last Name : 
+        <input type="text" name="last_name" required>
+        <br><br>
+        E-mail ID : <input type="email" name="mail" required>
+        <br><br>
+        
+        Select the device you are using to see my web page:<br>
+        <input type="radio" name="device" value="Android">Android<br>
+        <input type="radio" name="device" value="windows" checked>windows<br>
+        <input type="radio" name="device" value="MacOs">MacOs<br>
+        <br>
+        Name your browser: 
+  <input list="browsers" name="browser" required> 
+  <datalist id="browsers">
+    <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist> 
+        <br><br>
+        <input type="checkbox" name="sub_to_new_posts"  required>Would you like to get emails regarding our new services.
+    <br><br>
+    Any issues :<br>
+        <textarea name="msg" rows="5" cols="30"></textarea>
+    <br><br>
+    <input type="submit" name="Submit">
+    </form>
+</body>
+</html>
