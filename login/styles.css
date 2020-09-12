@@ -1,0 +1,13 @@
+form{
+    max-width:400px;
+    margin:auto;
+
+}
+a{
+    color:#aaaaaa;
+    transition: all ease-in-out 200ms;
+}
+a:hover{
+    color:#333333;
+    text-decoration: none;
+}
