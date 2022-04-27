@@ -21,11 +21,16 @@
       <input type="file" onchange="readURL(this)" />
       <br />
       <br />
+      <label for="password">password : </label>
+      <input type="password" name="password" id="password" />
+      <br />
+      <br />
+      <br />
       <div>Secret message</div>
       <textarea id="msg" cols="20" rows="4"></textarea>
       <br />
       <br />
-      <button class="btn btn-secondary" onclick="decodeImage(this)">
+      <button class="btn btn-secondary" onclick="encodeImage(this)">
         Encode
       </button>
       <h1>Image preview</h1>
@@ -38,8 +43,18 @@
       <br />
       <br />
       <h1>Decode</h1>
-      <input type="file" name="img" onchange="decodeURL(this)" />
+      <input type="file" name="img" onchange="readURL(this)" />
+      <br />
+      <br />
+      <label for="passwordDecode">password : </label>
+      <input type="password" name="passwordDecode" id="passwordDecode" />
+      <br />
       <h1>Decoded message</h1>
+      <br />
+      <button class="btn btn-secondary" onclick="decodeImage(this)">
+        Decode
+      </button>
+
       <br />
       <textarea id="decodeans">empty</textarea>
       <br />

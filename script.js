@@ -1,4 +1,5 @@
 let decodeImg;
+let encodeimg;
 if (!WebAssembly.instantiateStreaming) {
   // polyfill
   WebAssembly.instantiateStreaming = async (resp, importObject) => {
@@ -29,29 +30,12 @@ function toBase64(a) {
     a.split().reduce((data, byte) => data + String.fromCharCode(byte), "")
   );
 }
-async function test(data) {
-  console.log("result !!!!!!!!");
-  let msg = document.getElementById("msg").value;
-  let yourByteArrayAsBase64 = imageEncode(data, msg);
-  let d = "data:image/png;base64," + yourByteArrayAsBase64;
-  console.log(d);
-  document.getElementById("finalImage").src = d;
-  document.getElementById("download").href = d;
-}
 
-async function decodeURL(image) {
-  let reader = new FileReader();
-  reader.onload = (e) => {
-    let data1 = e.target.result;
-    let data = new Uint8Array(data1);
+async function decodeImage(e) {
+  let uDecodePassword = document.getElementById("passwordDecode").value;
 
-    let msg = imageDecode(data);
-    console.log("decoded msg !!!!!!!!!!!!!!!!!!!!!");
-    console.log(msg);
-    document.getElementById("decodeans").innerHTML = msg;
-  };
-  // reader.readAsDataURL(image.files[0]);
-  reader.readAsArrayBuffer(image.files[0]);
+  let msg = imageDecode(decodeImg, uDecodePassword);
+  document.getElementById("decodeans").innerHTML = msg;
 }
 
 async function readURL(image) {
@@ -59,15 +43,17 @@ async function readURL(image) {
   reader.onload = (e) => {
     let data1 = e.target.result;
     let data = new Uint8Array(data1);
-    // console.log(data1);
-    // console.log(data.length);
-    // console.log(data.byteLength);
+
     decodeImg = data;
-    // test(data);
   };
   reader.readAsArrayBuffer(image.files[0]);
 }
 
-async function decodeImage(e) {
-  test(decodeImg);
+async function encodeImage(e) {
+  let msg = document.getElementById("msg").value;
+  let uPassword = document.getElementById("password").value;
+  let yourEncodedImg = imageEncode(decodeImg, msg, uPassword);
+  let d = "data:image/png;base64," + yourEncodedImg;
+  document.getElementById("finalImage").src = d;
+  document.getElementById("download").href = d;
 }
