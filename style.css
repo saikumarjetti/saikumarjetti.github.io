@@ -1,0 +1,239 @@
+/* Using Inter font which is default in Tailwind */
+body {
+  font-family: "Inter", sans-serif;
+}
+/* Custom CSS Variables - Minimalist Black & White */
+:root {
+  --primary-text-color: #1f2937; /* gray-800 */
+  --secondary-text-color: #4b5563; /* gray-600 */
+  --background-color: #ffffff; /* white */
+  --section-bg-color: #f9fafb; /* gray-50 - for subtle section difference */
+  --header-footer-bg: #f9fafb; /* gray-50 - Keep header/footer light */
+  --border-color: #e5e7eb; /* gray-200 */
+  --interactive-color: #111827; /* gray-900 - For buttons, links */
+  --interactive-hover-bg: #374151; /* gray-700 - Hover for dark elements */
+  --interactive-hover-light-bg: #e5e7eb; /* gray-200 - Hover for light elements */
+}
+
+/* Section title style */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: var(--interactive-color); /* Use dark gray */
+  margin: 8px auto 0;
+}
+
+/* Simple Timeline Structure */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background-color: var(--border-color);
+  top: 0;
+  bottom: 0;
+  left: 19px;
+}
+.timeline-item {
+  position: relative;
+  padding-left: 60px;
+  padding-bottom: 2rem;
+}
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+.timeline-icon {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--interactive-color); /* Dark gray icon background */
+  color: var(--background-color); /* White icon */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--section-bg-color); /* Match section background */
+  z-index: 1;
+}
+
+/* Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInAnimation 0.8s ease-out forwards;
+}
+@keyframes fadeInAnimation {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+section {
+  animation-delay: 0.1s;
+}
+.hero-content h1 {
+  animation: fadeInAnimation 0.5s ease-out forwards;
+  opacity: 0;
+}
+.hero-content p:nth-of-type(1) {
+  animation: fadeInAnimation 0.5s 0.2s ease-out forwards;
+  opacity: 0;
+}
+.hero-content div:nth-of-type(1) {
+  animation: fadeInAnimation 0.5s 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+/* Responsive Nav */
+.nav-links {
+  display: flex;
+}
+.mobile-menu-button {
+  display: none;
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 68px; /* Adjust based on nav height */
+    left: 0;
+    background-color: var(
+      --header-footer-bg
+    ); /* Light background for mobile menu */
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links a {
+    text-align: center;
+    padding: 0.75rem 0; /* Increased padding */
+    width: 100%;
+    color: var(--primary-text-color); /* Dark text for mobile nav */
+  }
+  .nav-links a:hover {
+    background-color: var(--interactive-hover-light-bg); /* Light gray hover */
+  }
+  .mobile-menu-button {
+    display: block;
+  }
+}
+
+.skill-badge {
+  background-color: var(--background-color); /* white */
+  border: 1px solid var(--border-color); /* gray-200 */
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--secondary-text-color); /* gray-600 */
+  transition: all 0.3s ease;
+  cursor: default;
+  display: inline-block;
+}
+.skill-badge:hover {
+  background-color: var(--interactive-hover-light-bg); /* gray-200 */
+  color: var(--primary-text-color); /* gray-800 */
+  transform: translateY(-2px); /* Subtle lift */
+  /* Optional: Add subtle shadow on hover */
+  /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); */
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--border-color); /* gray-200 */
+  color: var(--secondary-text-color); /* gray-600 */
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.social-icon:hover {
+  background-color: var(--interactive-color); /* gray-900 */
+  color: var(--background-color); /* white */
+}
+
+.project-card {
+  background-color: var(--background-color); /* white */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  transition: box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+.project-card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.07); /* Slightly larger shadow on hover */
+}
+.project-image {
+  height: 150px;
+  background-color: var(--border-color); /* gray-200 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-text-color); /* gray-600 */
+}
+.project-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--primary-text-color);
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.project-tag {
+  background-color: var(--border-color); /* gray-200 */
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--secondary-text-color); /* gray-600 */
+}
+.project-description {
+  color: var(--secondary-text-color);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+.project-links a {
+  color: var(--interactive-color); /* gray-900 */
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+.project-links a:hover {
+  color: var(--secondary-text-color); /* gray-600 */
+  text-decoration: underline;
+}
