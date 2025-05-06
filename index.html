@@ -13,7 +13,6 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="./script.js"></script>
   </head>
   <body
     class="bg-[var(--background-color)] text-[var(--primary-text-color)] antialiased"
@@ -36,7 +35,10 @@
             <i class="fas fa-bars fa-lg"></i>
           </button>
 
-          <div class="hidden md:flex space-x-6 nav-links">
+          <div
+            id="desktop-nav-links"
+            class="hidden md:flex space-x-6 nav-links"
+          >
             <a
               href="#about"
               class="hover:text-[var(--interactive-color)] font-medium transition duration-300"
@@ -58,6 +60,11 @@
               >Projects</a
             >
             <a
+              href="#blog"
+              class="hover:text-[var(--interactive-color)] font-medium transition duration-300"
+              >Blog</a
+            >
+            <a
               href="#certifications"
               class="hover:text-[var(--interactive-color)] font-medium transition duration-300"
               >Certifications</a
@@ -69,7 +76,10 @@
             >
           </div>
         </nav>
-        <div id="mobile-nav-links" class="nav-links hidden md:hidden"></div>
+        <div
+          id="mobile-nav-links"
+          class="nav-links hidden md:hidden mt-4"
+        ></div>
       </div>
     </header>
 
@@ -110,6 +120,7 @@
               src="./static/me.jpg"
               alt="Sai Kumar Jetti"
               class="rounded-lg shadow-md mx-auto border-4 border-white"
+              onerror="this.onerror=null; this.src='https://placehold.co/300x300/e2e8f0/64748b?text=SK';"
             />
           </div>
           <div class="md:w-2/3">
@@ -237,7 +248,9 @@
         </div>
         <style>
           #experience .timeline-icon {
-            border-color: var(--section-bg-color);
+            border-color: var(
+              --section-bg-color
+            ); /* Ensures icon border matches section background */
           }
         </style>
       </section>
@@ -336,12 +349,14 @@
                   <a
                     href="https://saikumarjetti.github.io/go-wasm/"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i class="fas fa-link mr-1"></i> View Project
                   </a>
                   <a
                     href="https://github.com/saikumarjetti/go-wasm"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="ml-4"
                   >
                     <i class="fab fa-github mr-1"></i> Source Code
@@ -371,15 +386,61 @@
                   <a
                     href="https://github.com/Stirling-Tools/Stirling-PDF/pulls?q=is%3Apr+author%3Asaikumarjetti+"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i class="fas fa-link mr-1"></i> View Contribution
                   </a>
                   <a
                     href="https://github.com/Stirling-Tools/Stirling-PDF"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="ml-4"
                   >
                     <i class="fab fa-github mr-1"></i> Source Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="blog" class="py-16 fade-in">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl font-semibold mb-12 text-center section-title text-[var(--primary-text-color)]"
+          >
+            My Blog
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="project-card">
+              <div class="project-image">
+                <i class="fas fa-blog fa-3x"></i>
+              </div>
+              <div class="project-content">
+                <h3 class="project-title">
+                  Understanding Ping, Traceroute, and ICMP Protocol
+                </h3>
+                <div class="project-tags">
+                  <span class="project-tag">Networking</span>
+                  <span class="project-tag">ICMP</span>
+                  <span class="project-tag">Ping</span>
+                  <span class="project-tag">Traceroute</span>
+                  <span class="project-tag">Tech</span>
+                </div>
+                <p class="project-description">
+                  An in-depth look at how networking utilities like Ping and
+                  Traceroute operate, and the role of the ICMP protocol in
+                  network diagnostics. Explore the fundamentals of network
+                  troubleshooting.
+                </p>
+                <div class="project-links">
+                  <a
+                    href="https://medium.com/@saikumar.jetti09/understanding-ping-traceroute-and-icmp-protocol-05040d7ccbc5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fas fa-book-reader mr-1"></i> Read Article
                   </a>
                 </div>
               </div>
@@ -445,8 +506,7 @@
               <h3 class="text-2xl font-semibold mb-4">Get In Touch</h3>
               <p class="text-[var(--secondary-text-color)] mb-6">
                 I'm currently open to new opportunities and collaborations. Feel
-                free to reach out via email, phone, or connect with me on social
-                media.
+                free to reach out via email or connect with me on social media.
               </p>
               <div class="space-y-4 mb-8">
                 <a
@@ -472,24 +532,27 @@
               </div>
               <div class="flex space-x-4">
                 <a
-                  href="#"
+                  href="https://github.com/saikumarjetti"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="social-icon"
                   aria-label="GitHub Profile"
                 >
                   <i class="fab fa-github"></i>
                 </a>
                 <a
-                  href="#"
+                  href="https://linkedin.com/in/saikumarjetti"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="social-icon"
                   aria-label="LinkedIn Profile"
                 >
                   <i class="fab fa-linkedin"></i>
                 </a>
                 <a
-                  href="#"
+                  href="https://leetcode.com/u/saikumarjetti/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="social-icon"
                   aria-label="LeetCode Profile"
                 >
@@ -568,5 +631,6 @@
         <p class="text-sm">&copy; 2025 Sai Kumar Jetti. All rights reserved.</p>
       </div>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>
