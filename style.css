@@ -38,11 +38,11 @@ body {
   background-color: var(--border-color);
   top: 0;
   bottom: 0;
-  left: 19px;
+  left: 19px; /* Aligns with the center of the icon */
 }
 .timeline-item {
   position: relative;
-  padding-left: 60px;
+  padding-left: 60px; /* Space for the icon */
   padding-bottom: 2rem;
 }
 .timeline-item:last-child {
@@ -51,7 +51,7 @@ body {
 .timeline-icon {
   position: absolute;
   left: 0;
-  top: 0px;
+  top: 0px; /* Align icon with the top of the item content */
   width: 40px;
   height: 40px;
   background-color: var(--interactive-color); /* Dark gray icon background */
@@ -60,93 +60,96 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 4px solid var(--section-bg-color); /* Match section background */
+  border: 4px solid var(--section-bg-color); /* Match section background for seamless look */
   z-index: 1;
 }
 
-/* Animation */
+/* Animation - Modified for JS-controlled fade-in on scroll */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInAnimation 0.8s ease-out forwards;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  /* transition-delay: 0.1s; /* Optional delay */
 }
-@keyframes fadeInAnimation {
+.fade-in.is-visible {
+  /* Class added by JavaScript when element is in viewport */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero content specific animations (these run on page load) */
+.hero-content h1 {
+  animation: heroFadeInAnimation 0.5s ease-out forwards;
+  opacity: 0;
+}
+.hero-content p:nth-of-type(1) {
+  /* Targets the subtitle */
+  animation: heroFadeInAnimation 0.5s 0.2s ease-out forwards;
+  opacity: 0;
+}
+.hero-content div:nth-of-type(1) {
+  /* Targets the button container */
+  animation: heroFadeInAnimation 0.5s 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes heroFadeInAnimation {
+  /* Renamed to avoid confusion with .fade-in class */
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-section {
-  animation-delay: 0.1s;
-}
-.hero-content h1 {
-  animation: fadeInAnimation 0.5s ease-out forwards;
-  opacity: 0;
-}
-.hero-content p:nth-of-type(1) {
-  animation: fadeInAnimation 0.5s 0.2s ease-out forwards;
-  opacity: 0;
-}
-.hero-content div:nth-of-type(1) {
-  animation: fadeInAnimation 0.5s 0.4s ease-out forwards;
-  opacity: 0;
-}
+/* Removed: section { animation-delay: 0.1s; } as fade-in is now transition-based */
 
 /* Responsive Nav */
-.nav-links {
-  display: flex;
-}
-.mobile-menu-button {
-  display: none;
-}
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    position: absolute;
-    top: 68px; /* Adjust based on nav height */
-    left: 0;
-    background-color: var(
-      --header-footer-bg
-    ); /* Light background for mobile menu */
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-  .nav-links.active {
-    display: flex;
-  }
-  .nav-links a {
-    text-align: center;
-    padding: 0.75rem 0; /* Increased padding */
-    width: 100%;
-    color: var(--primary-text-color); /* Dark text for mobile nav */
-  }
-  .nav-links a:hover {
-    background-color: var(--interactive-hover-light-bg); /* Light gray hover */
-  }
-  .mobile-menu-button {
-    display: block;
-  }
+/* Desktop nav-links are handled by Tailwind's hidden md:flex */
+/* Mobile nav-links container styling */
+#mobile-nav-links {
+  /* Initially hidden, shown by JS by removing 'hidden' and adding 'active' */
+  /* 'active' class can be used for specific active state styling if needed */
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--header-footer-bg);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
+#mobile-nav-links.active {
+  /* This class is toggled by JS */
+  display: flex;
+}
+
+#mobile-nav-links a {
+  text-align: center;
+  padding: 0.75rem 1rem; /* Adjusted padding for better touch targets */
+  width: 100%;
+  color: var(--primary-text-color);
+  display: block; /* Ensure links take full width for easier tapping */
+}
+#mobile-nav-links a:hover {
+  background-color: var(--interactive-hover-light-bg);
+  color: var(--interactive-color); /* Ensure text color changes on hover */
+}
+
+/* Mobile menu button is displayed on small screens by Tailwind's md:hidden */
+/* .mobile-menu-button is already in HTML */
+
 .skill-badge {
-  background-color: var(--background-color); /* white */
-  border: 1px solid var(--border-color); /* gray-200 */
-  border-radius: 9999px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px; /* pill shape */
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  color: var(--secondary-text-color); /* gray-600 */
+  color: var(--secondary-text-color);
   transition: all 0.3s ease;
-  cursor: default;
+  cursor: default; /* Indicates it's not a link */
   display: inline-block;
 }
 .skill-badge:hover {
-  background-color: var(--interactive-hover-light-bg); /* gray-200 */
-  color: var(--primary-text-color); /* gray-800 */
-  transform: translateY(-2px); /* Subtle lift */
-  /* Optional: Add subtle shadow on hover */
-  /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); */
+  background-color: var(--interactive-hover-light-bg);
+  color: var(--primary-text-color);
+  transform: translateY(-2px); /* Subtle lift effect */
 }
 
 .social-icon {
@@ -156,84 +159,95 @@ section {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--border-color); /* gray-200 */
-  color: var(--secondary-text-color); /* gray-600 */
+  background-color: var(--border-color);
+  color: var(--secondary-text-color);
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .social-icon:hover {
-  background-color: var(--interactive-color); /* gray-900 */
-  color: var(--background-color); /* white */
+  background-color: var(--interactive-color);
+  color: var(--background-color);
 }
 
 .project-card {
-  background-color: var(--background-color); /* white */
-  border-radius: 8px;
-  overflow: hidden;
+  background-color: var(--background-color);
+  border-radius: 8px; /* Standard rounded corners */
+  overflow: hidden; /* Ensures content respects border radius */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Softer shadow */
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Added transform for subtle hover effect */
   border: 1px solid var(--border-color);
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Ensures content stacks vertically */
 }
 .project-card:hover {
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.07); /* Slightly larger shadow on hover */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.07);
+  transform: translateY(-3px); /* Slight lift on hover */
 }
 .project-image {
-  height: 150px;
-  background-color: var(--border-color); /* gray-200 */
+  height: 150px; /* Fixed height for consistency */
+  background-color: var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--secondary-text-color); /* gray-600 */
+  color: var(--secondary-text-color);
 }
 .project-content {
-  padding: 1.5rem;
-  flex-grow: 1;
+  padding: 1.5rem; /* Ample padding */
+  flex-grow: 1; /* Allows content to fill space, pushing links to bottom */
   display: flex;
   flex-direction: column;
 }
 .project-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: 1.25rem; /* Tailwind's text-xl */
+  font-weight: 600; /* semibold */
+  margin-bottom: 0.75rem; /* mb-3 */
   color: var(--primary-text-color);
 }
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem; /* space between tags */
+  margin-bottom: 1rem; /* mb-4 */
 }
 .project-tag {
-  background-color: var(--border-color); /* gray-200 */
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--secondary-text-color); /* gray-600 */
+  background-color: var(--border-color);
+  padding: 0.25rem 0.75rem; /* py-1 px-3 */
+  border-radius: 9999px; /* pill shape */
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500; /* medium */
+  color: var(--secondary-text-color);
 }
 .project-description {
   color: var(--secondary-text-color);
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-  flex-grow: 1;
+  margin-bottom: 1.5rem; /* mb-6 */
+  font-size: 0.95rem; /* Slightly smaller than base */
+  line-height: 1.6; /* Improved readability */
+  flex-grow: 1; /* Pushes links to the bottom if description is short */
 }
 .project-links {
   display: flex;
-  gap: 1rem;
-  margin-top: auto;
+  gap: 1rem; /* space between links */
+  margin-top: auto; /* Pushes links to the bottom of the card */
 }
 .project-links a {
-  color: var(--interactive-color); /* gray-900 */
+  color: var(--interactive-color);
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 500;
-  display: inline-flex;
+  font-weight: 500; /* medium */
+  display: inline-flex; /* Aligns icon and text nicely */
   align-items: center;
   transition: color 0.3s ease;
 }
 .project-links a:hover {
-  color: var(--secondary-text-color); /* gray-600 */
+  color: var(--secondary-text-color); /* Or a different hover color */
   text-decoration: underline;
+}
+
+/* Ensure mobile nav links are not display:none initially if Tailwind md:hidden is on parent */
+@media (max-width: 767px) {
+  /* Tailwind's 'md' breakpoint is 768px */
+  #desktop-nav-links {
+    display: none; /* Explicitly hide desktop links on mobile */
+  }
+  /* mobile-menu-button is already handled by Tailwind md:hidden */
 }
